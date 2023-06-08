@@ -1,10 +1,10 @@
 import React from 'react';
 import './App.css';
-import { Layout } from './layout/layout';
+import Router from './router/Router';
 
 function App() {
   return (
-<Layout/>
+<Router/>
   );
 }
 
