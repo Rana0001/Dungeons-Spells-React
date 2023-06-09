@@ -9,10 +9,11 @@ const ParallaxPage = () => {
         style={{ backgroundImage: `url(${bgImage})` }}
       >
 
-        <div className="flex flex-col items-center justify-center h-[500px] text-white">
-          <h1 className="text-4xl font-bold text-center mb-6">Welcome to Dungeons & Dragon World</h1>
-          <button onClick={()=>{console.log("Hello")}} className="px-6 py-3 bg-[#f02424] text-white rounded-lg font-semibold shadow-md">
-            Get Started
+        <div className="flex flex-col items-center justify-center h-[800px] text-white">
+          <h1 className="text-4xl font-bold text-center mb-6">Welcome to Dungeons & Dragon<br/> Spells World</h1>
+          
+          <button onClick={()=>{console.log("Hello")}} className="hover:transform hover:scale-110 hover:-rotate- px-6 py-3 bg-[#f02424] text-white rounded-lg font-semibold shadow-md">
+            View All Spells
           </button>
         </div>
       </div>

@@ -1,0 +1,20 @@
+/* SpellTable.css */
+
+
+  .listing {
+    background-image: url('../image/1a.png');
+    background-repeat: no-repeat;
+    background-size: 100% 73px;
+    transition: background-image .2s cubic-bezier(0.17,0.67,0.83,0.67),z-index .5s;
+  }
+
+  .listing:hover {
+    background-image: url('../image/1a-hover.png');
+    background-repeat: no-repeat;
+    background-size: 100% 73px;
+    transition: background-image .1s cubic-bezier(0.17,0.67,0.83,0.67),z-index 0s;
+  }
+
+  
+
+  
