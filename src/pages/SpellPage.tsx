@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Toast } from 'flowbite-react';
 import { } from '@fortawesome/free-regular-svg-icons';
-import { faFlask,faBook, faAtom,faVial, faChalkboardUser,faArrowUpRightDots,faSchoolFlag,faStopwatch,faClock } from '@fortawesome/free-solid-svg-icons';
+import { faFlask,faBook, faCircleCheck,faCircleXmark,faAtom,faVial, faChalkboardUser,faArrowUpRightDots,faSchoolFlag,faStopwatch,faClock } from '@fortawesome/free-solid-svg-icons';
 import errorImage from '../static/image/notfound.jpg'
 import radar from '../static/image/radar.png'
 import spellImage from "../static/image/spell.jpg"
@@ -13,6 +14,8 @@ const SpellPage: React.FC = () => {
   const spell = state && state.data;
 
   const [isFavorite, setIsFavorite] = useState(false);
+  const [isToggleS, setToggleS] = useState(false);
+  const [isToggleF, setToggleF] = useState(false);
 
   useEffect(() => {
     // Check if the spell is already in favorites
@@ -26,12 +29,23 @@ const handleAddToFavorites = () => {
   const updatedFavorites = [...favorites, spell];
   localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
   setIsFavorite(true);
+  setToggleS(true);
+  setTimeout(() => {
+    setToggleS(false);
+  }
+  , 3000);
+
 };
   const handleRemoveFromFavorites = () => {
     const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
     const updatedFavorites = favorites.filter((fav:any) => fav.name !== spell.name);
     localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
     setIsFavorite(false);
+    setToggleF(true);
+    setTimeout(() => {
+      setToggleF(false);
+    }
+    , 3000);
   };
 
   if (!spell) {
@@ -135,6 +149,26 @@ const handleAddToFavorites = () => {
                 </svg>
               </button>
             </div>}
+        
+        {isToggleF? <Toast className='fixed top-2 right-0'>
+        <div className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gray-100 text-green-500 dark:bg-green-800 dark:text-green-200">
+        <FontAwesomeIcon icon={faCircleXmark} style={{color: "#c72323",}} />
+        </div>
+        <div className="ml-3 text-sm font-normal">
+          Spell Removed Successfully.
+        </div>
+        <Toast.Toggle />
+      </Toast>:""}
+
+      {isToggleS? <Toast className='fixed top-2 right-0'>
+        <div className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gray-100 text-green-500 dark:bg-green-800 dark:text-green-200">
+        <FontAwesomeIcon icon={faCircleCheck} style={{color: "#2fc72f",}} />
+        </div>
+        <div className="ml-3 text-sm font-normal">
+          Spell Added Successfully.
+        </div>
+        <Toast.Toggle />
+      </Toast>:""}
           </div>
         </div>
       </div>

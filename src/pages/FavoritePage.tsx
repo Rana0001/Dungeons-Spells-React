@@ -1,14 +1,15 @@
 'use client';
 import React,{useState} from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Card } from 'flowbite-react';
-import { faHeart as faHeartF,faArrowRightLong } from '@fortawesome/free-solid-svg-icons';
+import { Button, Card,Toast, } from 'flowbite-react';
+import { faHeart as faHeartF,faArrowRightLong,faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import errorImage from '../static/image/notfound.jpg'
 
 export default function CardWithActionButton() {
   const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
   const [isFavorite, setIsFavorite] = useState(false);
+  const [isToggle, setToggle]= useState(false);
 
 
   const handleRemoveFromFavorites = (spell:any) => {
@@ -16,7 +17,11 @@ export default function CardWithActionButton() {
     const updatedFavorites = favorite.filter((fav:any) => fav.name !== spell.name);
     localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
     setIsFavorite(false);
-    window.location.reload()
+    setToggle(true);
+    setTimeout(() => {
+      setToggle(false);
+    }
+    , 3000);
   };
   if (favorites.length === 0) {
     return (
@@ -84,6 +89,15 @@ export default function CardWithActionButton() {
         </p>
       </button>
     </Card>))}
+    {isToggle? <Toast className='fixed top-2 right-0'>
+        <div className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gray-100 text-green-500 dark:bg-green-800 dark:text-green-200">
+        <FontAwesomeIcon icon={faCircleXmark} style={{color: "#c72323",}} />
+        </div>
+        <div className="ml-3 text-sm font-normal">
+          Spell Removed Successfully.
+        </div>
+        <Toast.Toggle />
+      </Toast>:""}
     </div>
   )
 }

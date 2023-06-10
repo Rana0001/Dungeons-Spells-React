@@ -5,7 +5,7 @@ import '../static/css/Header.css'
 
 const Header = () => {
   return (
-    <header className="flex items-center md:justify-between justify-center shadow py-5 sm:py-0">
+    <header className="flex items-center md:justify-between justify-center shadow-lg drop-shadow-sm py-5 sm:py-0">
         <div className='mx-3 hidden sm:block'>
         <img src={logoSrc} alt="logo" className="w-80 h-20 transform hover:scale-110" />
         </div>
