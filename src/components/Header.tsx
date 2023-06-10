@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import logoSrc from '../static/image/logo.png';
 import '../static/css/Header.css'
 
@@ -11,13 +12,13 @@ const Header = () => {
       <nav className='mx-3'>
         <ul className="flex justify-center transform lg:-translate-x-20 -translate-x-0">
             <li className="mx-3">
-                <a href="/" className="text-[#0c0c0c] hover:text-[#f02424]">Home</a>
+                <Link to="/"><button className="text-[#0c0c0c] hover:text-[#f02424]">Home</button></Link>
             </li>
             <li className="mx-3">
-                <a href="/all" className="text-[#0c0c0c] hover:text-[#f02424]">Spells</a>
+                <Link to="/all"><button className="text-[#0c0c0c] hover:text-[#f02424]">Spells</button></Link>
             </li>
             <li className="mx-3">
-                <a href="/favor" className="text-[#0c0c0c] hover:text-[#f02424]">Favourite</a>
+                <Link to="/favor"><button className="text-[#0c0c0c] hover:text-[#f02424]">Favourite</button></Link>
             </li>
         </ul>
 

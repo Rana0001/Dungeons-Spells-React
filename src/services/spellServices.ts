@@ -59,3 +59,21 @@ export const getSpellDesc = async () => {
     throw error;
   }
 };
+
+export const getSpells = async () => {
+  try {
+    const response = await getAllSpell();
+    const spellList = response.results;
+
+    const spellPromises = spellList.map(async (spell:any) => {
+      const spellData = await getSpell(spell.index);
+      return spellData;
+    });
+
+    const spellDesc = await axios.all(spellPromises.slice(0,15));
+    return spellDesc;
+  } catch (error) {
+    console.log("Error fetching spell descriptions:", error);
+    throw error;
+  }
+};

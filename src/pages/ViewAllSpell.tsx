@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react';
-
-import Table from '../components/Table';
 import { getSpellDesc } from '../services/spellServices';
+import Table from '../components/Table';
 import background from '../static/image/background.jpg';
 
-export default function ViewAllSpell() {
-  const [searchTerm, setSearchTerm] = useState('');
+const ViewAllSpell: React.FC = () => {
   const [spells, setSpells] = useState<any>([]);
-
+  const [searchQuery, setSearchQuery] = useState('');
 
   const fetchSpells = async () => {
     try {
@@ -19,33 +17,30 @@ export default function ViewAllSpell() {
   };
 
   useEffect(() => {
-
-
     fetchSpells();
   }, []);
 
-  const handleSearchTermChange = (e:any) => {
-    setSearchTerm(e.target.value);
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(event.target.value);
   };
 
-  const handleSearch = () => {
-    // Perform search based on searchTerm
-
-    const filteredSpells = spells.filter((spell:any) =>
-      spell.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setSpells(filteredSpells);
-  };
+  const filteredSpells = spells.filter((spell: any) =>
+    spell.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
-    <section className="bg-gray-100 py-8 bg-no-repeat bg-cover bg-center" style={{ backgroundImage: `url(${background})` }}>
-      <div className="flex items-center justify-end my-4">
+    <section
+      className="bg-gray-100 py-8 bg-no-repeat bg-cover bg-center"
+      style={{ backgroundImage: `url(${background})` }}
+    >
+      <div className="flex items-center justify-end my-4 mr-2">
         <div className="relative">
           <input
             type="search"
-            placeholder="Search"
+            placeholder="Search a spell"
             className="pl-10 pr-4 py-3 rounded-lg w-full"
-            onChange={handleSearchTermChange}
+            value={searchQuery}
+            onChange={handleSearch}
           />
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
             <svg
@@ -61,14 +56,13 @@ export default function ViewAllSpell() {
             </svg>
           </div>
         </div>
-        <button
-          className="ml-4 bg-[#f02424] hover:transform hover:scale-105 text-white px-4 py-2 rounded-lg"
-          onClick={handleSearch}
-        >
+        <button className="ml-4 bg-[#f02424] hover:transform hover:scale-105 text-white px-4 py-2 rounded-lg">
           Search
         </button>
       </div>
-      <Table spellData={spells} />
+      <Table spellData={filteredSpells} />
     </section>
   );
-}
+};
+
+export default ViewAllSpell;
