@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { Pagination } from 'flowbite-react';
 import image from '../static/image/1a.png';
 import '../static/css/Table.css';
 
@@ -120,17 +121,16 @@ const SpellTable: React.FC<{spellData:any}> = ({ spellData }) => {
       ))}
       {/* Pagination */}
       {spellData.length > spellsPerPage && (
-        <div className="flex flex-wrap gap-2 justify-center mt-4">
-          {Array.from({ length: Math.ceil(spellData.length / spellsPerPage) }).map((_, index) => (
-            <div className=''><button
-            key={index}
-            className={`mx-1 px-2 py-1 rounded-md ${currentPage === index + 1 ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
-            onClick={() => handlePageChange(index + 1)}
-          >
-            {index + 1}
-          </button></div>
+        <div className="flex justify-center mt-4">
+          <Pagination
+            currentPage={currentPage}
+            totalPages={Math.ceil(spellData.length / spellsPerPage)}
+            onPageChange={handlePageChange}
+            showIcons
+            className='text-white'
+            layout='pagination'
             
-          ))}
+          />
         </div>
       )}
     </div>

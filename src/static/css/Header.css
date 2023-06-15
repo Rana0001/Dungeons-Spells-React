@@ -1,6 +1,6 @@
 /* Header.css */
 
-li.active {
+.head.active {
     /* Add Box Decoration */
     background-color: #0c0c0c;
     color: #ffffff!important;
@@ -12,7 +12,7 @@ li.active {
   }
   
   /* Style the links inside the navigation bar */
-  li {
+  .head {
     color: #000000;
     font-size: 1rem;
     font-weight: 400;
@@ -28,7 +28,7 @@ li.active {
   }
 
 
-  li::after{
+  .head::after{
     content: '';
     position: absolute;
     width: 75%;
@@ -41,7 +41,7 @@ li.active {
     transition: transform 0.25s ease-out;
 }
 
-li:hover::after{
+.head:hover::after{
     transform: scaleX(1);
     transform-origin: bottom left;
     color: #000;

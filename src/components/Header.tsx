@@ -10,15 +10,15 @@ const Header = () => {
         <div className='mx-3 hidden sm:block'>
         <img src={logoSrc} alt="logo" className="w-80 h-20 transform hover:scale-110" />
         </div>
-      <nav className='mx-3'>
+      <nav className='mx-3' >
         <ul className="flex justify-center transform lg:-translate-x-20 -translate-x-0">
-            <li className="mx-3">
+            <li className="mx-3 head">
                 <Link to="/"><button className="text-[#0c0c0c] hover:text-[#f02424]">Home</button></Link>
             </li>
-            <li className="mx-3">
+            <li className="mx-3 head">
                 <Link to="/all"><button className="text-[#0c0c0c] hover:text-[#f02424]">Spells</button></Link>
             </li>
-            <li className="mx-3">
+            <li className="mx-3 head">
                 <Link to="/favor"><button className="text-[#0c0c0c] hover:text-[#f02424]">Favourite</button></Link>
             </li>
         </ul>
